@@ -23,6 +23,11 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 ---
 
 ## 🎯 Approach
+1. load data into duckdb
+1. EDA
+1. data quality checks
+1. answer questions from assessment
+1. profit :dollar: :dollar: :dollar: !!!
 
 
 ---
