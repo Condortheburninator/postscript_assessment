@@ -46,6 +46,6 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 ## :book: Bibliography
 
 - [ascii generator](https://patorjk.com/software/taag/#p=display&f=Doom&t=RAMP)
-- [duckdb INSERT guide](https://duckdb.org/docs/data/insert)
+- [duckdb csv INSERT guide](https://duckdb.org/docs/data/csv/overview.html)
 
 ---
