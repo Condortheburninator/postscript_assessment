@@ -12,6 +12,10 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 `CONNER FERGUSON TAKE HOME ASSESSMENT`
 
+---
+
+## :books: Table of Contents
+
 - [Approach](#-approach)
 - [Data Quality](#mag_right-data-quality-loading-data--data-cleanup)
 - [EDA](#hiking_boot-eda--hintsassumptions-review-from-pdf)
