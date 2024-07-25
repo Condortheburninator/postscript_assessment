@@ -24,7 +24,6 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 - [Next Steps](#next_track_button-next-steps)
 - [Bibliography](#book-bibliography)
 
----
 
 ## 🎯 Approach
 1. load data into duckdb
@@ -34,8 +33,6 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 1. answer questions from assessment
 1. profit :dollar: :dollar: :dollar: !!!
 
-
----
 
 ## :mag_right: Data Quality (Loading Data) & Data Cleanup
 
@@ -58,7 +55,6 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
     1. ex. varchar to timestamptz
         1.  `2019-04-08 13:00:00 PDT` --> `2019-04-08 13:00:00-04`
 
----
 
 ## :hiking_boot: EDA
 
