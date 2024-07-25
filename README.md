@@ -35,12 +35,12 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 ## :mag_right: Data Quality (Loading Data) & Data Cleanup
 
 ### Data Quality
-1. `SMS Platform B Subscriber List.csv`- no glaring issues
+1. :white_check_mark: `SMS Platform B Subscriber List.csv` - no glaring issues
     1. was able to use the following simple code to upload it :point_down:
 
     `CREATE TABLE SMS_PLATFORM_B_SUBSCRIBER_LIST AS SELECT * FROM 'data/SMS Platform B Subscriber List.csv';`
 
-1. `SMS Platform A Subscriber List.csv` - lots of issues
+1. :x: `SMS Platform A Subscriber List.csv` - lots of issues
     1. after some investigation two things are going on:
         1. `NULL` values are inputted as as a dash  --> kept this as a `VARCHAR` and will solve for it later in the `VIEW` with `TRY_CAST`
         1. 1 row is causing problems :point_down: --> removed this row
