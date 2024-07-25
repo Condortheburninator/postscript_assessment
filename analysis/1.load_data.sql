@@ -1,19 +1,27 @@
 
 
--- CREATE TABLE SMS_PLATFORM_A_SUBSCRIBER_LIST AS SELECT * FROM 'data/SMS_Platform_A_Subscriber_List.csv' null_padding = TRUE;
+CREATE TABLE SMS_PLATFORM_A_SUBSCRIBER_LIST
 
-SELECT * FROM read_csv(
+AS
 
-    'data/SMS_Platform_A_Subscriber_List.csv'
-    ,delim          = ','
-    ,header         = TRUE
-    ,null_padding   = TRUE
-    ,columns = {
-        -- 'FlightDate': 'DATE',
-        -- 'UniqueCarrier': 'VARCHAR',
-        -- 'OriginCityName': 'VARCHAR',
-        -- 'DestCityName': 'VARCHAR'
-    }
-);
+    SELECT * FROM read_csv(
 
--- CREATE TABLE SMS_PLATFORM_B_SUBSCRIBER_LIST AS SELECT * FROM 'data/SMS_Platform_B_Subscriber_List.csv';
+        'data/SMS Platform A Subscriber List.csv'
+        ,delim          = ','
+        ,header         = TRUE
+        ,null_padding   = TRUE
+        -- ,all_varchar    = TRUE
+        ,ignore_errors  = TRUE
+        ,columns = {
+
+            'Phone Number'          : BIGINT
+            ,'Opt-in Source'        : VARCHAR
+            ,'Date added'           : TIMESTAMP
+            ,'Status'               : VARCHAR
+            ,'Date unsubscribed'    : VARCHAR
+        }
+
+    );
+
+
+-- CREATE TABLE SMS_PLATFORM_B_SUBSCRIBER_LIST AS SELECT * FROM 'data/SMS Platform B Subscriber List.csv';
