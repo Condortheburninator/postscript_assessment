@@ -13,12 +13,11 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 `CONNER FERGUSON TAKE HOME ASSESSMENT`
 
 - [Approach](#-approach)
-- [EDA & Data Quality](#mag_right-eda--data-quality)
+- [Data Quality](#mag_right-data-quality-loading-data--data-cleanup)
+- [EDA](#hiking_boot-eda--hintsassumptions-review-from-pdf)
 - [Answer](#white_check_mark-answer)
 - [Next Steps](#next_track_button-next-steps)
 - [Bibliography](#book-bibliography)
-- [Appendix](#appendix)
-
 
 ---
 
@@ -42,7 +41,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 1. :x: `SMS Platform A Subscriber List.csv` - lots of issues
     1. after some investigation two things are going on:
-        1. `NULL` values are inputted as as a dash  --> kept this as a `VARCHAR` and will solve for it later in the `VIEW` with `TRY_CAST`
+        1. `NULL` values are inputted as as a dash  --> kept this as a `VARCHAR` and will solve for it later in a `VIEW` with `TRY_CAST`
         1. 1 row is causing problems :point_down: --> removed this row
 
          |       |          |                             |              |                  |            |   |
@@ -53,8 +52,9 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
     1. ex. varchar to timestamptz
         1.  `2019-04-08 13:00:00 PDT` --> `2019-04-08 13:00:00-04`
 
+---
 
-### EDA & Hints/Assumptions Review (from pdf)
+## :hiking_boot: EDA & Hints/Assumptions Review (from pdf)
 1. digits removal - either be 8 digits long or 9 with a leading 1
     1. list a
         1. most of the records are either 8 or 9 digits
@@ -122,7 +122,7 @@ list a
 ---
 
 ## :next_track_button: Next Steps
-
+- [ ] build out transformation pipeline and lineage in dbt
 
 ---
 
