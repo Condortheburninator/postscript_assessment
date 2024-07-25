@@ -45,7 +45,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 1. :x: `SMS Platform A Subscriber List.csv` - lots of issues
     1. after some investigation two things are going on:
-        1. `NULL` values are inputted as as a dash  --> kept this as a `VARCHAR` and will solve for it later in a `VIEW` with `TRY_CAST`
+        1. `NULL` values are inputted as as a dash ( `-` )  --> kept this as a `VARCHAR` and will solve for it later in a `VIEW` with `TRY_CAST`
         1. 1 row is causing problems :point_down: --> removed this row
 
          |       |          |                             |              |                  |            |   |
