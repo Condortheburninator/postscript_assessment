@@ -45,12 +45,13 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 1. :x: `SMS Platform A Subscriber List.csv` - lots of issues
     1. after some investigation two things are going on:
-        1. `NULL` values are inputted as as a dash ( `-` )  --> kept this as a `VARCHAR` and will solve for it later in a `VIEW` with `TRY_CAST`
+        1. `NULL` values are inputted as a dash ( `-` ) --> kept this as a `VARCHAR` and will solve for it later in a `VIEW` with `TRY_CAST`
         1. 1 row is causing problems :point_down: --> removed this row
 
          |       |          |                             |              |                  |            |   |
          | ----- | -------- | --------------------------- | ------------ | ---------------- | ---------- | - |
          | SANTA | Checkout | Collected on SMS Platform B | Unsubscribed | 2023-07-06 11:53 | Subscribed | - |
+
 1. duckdb had issues inferring some of the data types (mostly timestamps & timestamps with timezones)
     1. wanted to clean all of this up and `CREATE VIEWS` so I wouldn't have to deal with this later on
     1. ex. varchar to timestamptz
