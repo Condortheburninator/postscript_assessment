@@ -18,7 +18,8 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 - [Approach](#-approach)
 - [Data Quality](#mag_right-data-quality-loading-data--data-cleanup)
-- [EDA](#hiking_boot-eda--hintsassumptions-review-from-pdf)
+- [EDA](#hiking_boot-eda)
+- [Assumption Review]()
 - [Answer](#white_check_mark-answer)
 - [Next Steps](#next_track_button-next-steps)
 - [Bibliography](#book-bibliography)
@@ -37,7 +38,6 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 ## :mag_right: Data Quality (Loading Data) & Data Cleanup
 
-### Data Quality
 1. :white_check_mark: `SMS Platform B Subscriber List.csv` - no glaring issues
     1. was able to use the following simple code to upload it :point_down:
 
@@ -59,7 +59,30 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 ---
 
-## :hiking_boot: EDA & Hints/Assumptions Review (from pdf)
+## :hiking_boot: EDA
+
+1. list a
+
+|    column_name    | column_type |       min        |             max             | approx_unique |        avg         |        std        |    q25    |    q50    |    q75    | count  | null_percentage |
+|-------------------|-------------|------------------|-----------------------------|--------------:|--------------------|-------------------|-----------|-----------|-----------|-------:|----------------:|
+| Phone number      | BIGINT      | 11111111         | 498191152175206             | 685077        | 1009853966.5912259 | 604829825759.1072 | 134651272 | 160484117 | 181121891 | 678473 | 0.00            |
+| Opt-in Source     | VARCHAR     | Checkout         | Tools keywords              | 10            |                    |                   |           |           |           | 678473 | 0.00            |
+| Date added        | VARCHAR     | 2022-02-03 06:08 | 2024-03-19 17:21            | 358079        |                    |                   |           |           |           | 678473 | 0.00            |
+| Status            | VARCHAR     | Subscribed       | Unsubscribed                | 2             |                    |                   |           |           |           | 678473 | 0.00            |
+| Date unsubscribed | VARCHAR     | -                | 2024-03-18T22:28:45.466000Z | 13446         |                    |                   |           |           |           | 678473 | 0.00            |
+
+1. list b
+
+|       column_name       | column_type |           min           |           max           | approx_unique |        avg         |        std         |    q25    |    q50    |    q75    | count  | null_percentage |
+|-------------------------|-------------|-------------------------|-------------------------|--------------:|--------------------|--------------------|-----------|-----------|-----------|-------:|----------------:|
+| Phone Number            | BIGINT      | 20587393                | 198999810               | 836832        | 158220062.09586287 | 24073108.084134195 | 134475959 | 159793070 | 180509509 | 815540 | 0.00            |
+| SMS Subscription Status | VARCHAR     | SUBSCRIBED              | SUBSCRIBED              | 1             |                    |                    |           |           |           | 815540 | 0.00            |
+| Opt-in Timestamp        | VARCHAR     | 2019-04-08 17:00:00 PDT | 2024-04-25 10:37:24 PDT | 644797        |                    |                    |           |           |           | 815540 | 0.00            |
+| Opt-in Source           | VARCHAR     | Checkout                | TEXT                    | 6             |                    |                    |           |           |           | 815540 | 0.00            |
+| Additional Detail       | VARCHAR     | 8310QTM31               | yes                     | 79            |                    |                    |           |           |           | 815540 | 26.89           |
+| SMS Consent Timestamp   | TIMESTAMP   | 2019-04-08 17:00:00     | 2024-04-25 10:37:24     | 639069        |                    |                    |           |           |           | 815540 | 0.00            |
+
+## Hints/Assumptions Review (from pdf)
 1. digits removal - either be 8 digits long or 9 with a leading 1
     1. list a
         1. most of the records are either 8 or 9 digits
@@ -90,10 +113,16 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
             | 9             | 77          | 0.011472469054132175 |
 
     1. list b
+        1. no issues here
+
+            | PHONE_NUMBER | PHONE_COUNT |     PER_OF_TOTAL     |
+            |-------------:|------------:|---------------------:|
+            | 8            | 17          | 0.002084508423866395 |
+            | 9            | 815523      | 99.99791549157612    |
 1. remove list import as an opt-in source
     1. list a
         1. list import accounts for >10% of the records
-        1. collect on sms platform b accounts for a huge portion
+        1. collect on sms platform b accounts for a huge portion, we'll need to grab the `OPT_IN_SOURCE` from that table
 
         |        OPT_IN_SOURCE        | PHONE_COUNT |     PER_OF_TOTAL     |
         |-----------------------------|------------:|---------------------:|
@@ -110,7 +139,14 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 
 1. filter to `STATUS = 'Subscribed'`
+    1. list a
 
+        |    STATUS    | STATUS_COUNT |
+        |--------------|-------------:|
+        | Unsubscribed | 13485        |
+        | Subscribed   | 664985       |
+
+## to do
 list a
 - [ ] has 8 digits or 9 starting with 1
 - [ ] remove list import as an opt-in source
@@ -128,6 +164,10 @@ list a
 
 ## :next_track_button: Next Steps
 - [ ] build out transformation pipeline and lineage in dbt
+- [ ] create bronze, silver and gold (medallion architecture) for schemas
+    - bronze = raw data
+    - silver = standardized data
+    - gold   = business logic & curation
 
 ---
 
