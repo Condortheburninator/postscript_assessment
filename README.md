@@ -10,7 +10,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 ```
 
-`CONNER FERGUSON APPLICATION ASSESSMENT`
+`CONNER FERGUSON TAKE HOME ASSESSMENT`
 
 - [Approach](#-approach)
 - [EDA & Data Quality](#mag_right-eda--data-quality)
@@ -24,28 +24,31 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 ## 🎯 Approach
 1. load data into duckdb
-1. EDA
 1. data quality checks
+1. EDA
 1. answer questions from assessment
 1. profit :dollar: :dollar: :dollar: !!!
 
 
 ---
 
-## :mag_right: EDA & Data Quality
+## :mag_right: Data Quality (Loading Data) & Data Cleanup
 
 ### Data Quality
 1. no issues with loading the platform b list
-was able to use the following syntax to upload it
-`CREATE TABLE SMS_PLATFORM_B_SUBSCRIBER_LIST AS SELECT * FROM 'data/SMS Platform B Subscriber List.csv';`
+    1. was able to use the following simple code to upload it `CREATE TABLE SMS_PLATFORM_B_SUBSCRIBER_LIST AS SELECT * FROM 'data/SMS Platform B Subscriber List.csv';`
 1. however, lots of issues with platform a list
     1. after some investigation two things are going on:
-        1. `NULL` values are inputted as as a dash
-        1. 1 row is causing problems
+        1. `NULL` values are inputted as as a dash  --> kept this as a `VARCHAR` and will solve for it later in a `VIEW`
+        1. 1 row is causing problems :point_down: --> removed this row
 
          |       |          |                             |              |                  |            |   |
          | ----- | -------- | --------------------------- | ------------ | ---------------- | ---------- | - |
          | SANTA | Checkout | Collected on SMS Platform B | Unsubscribed | 2023-07-06 11:53 | Subscribed | - |
+1. duckdb had issues inferring some of the data types (mostly timestamps & timestamps with timezones)
+    1. wanted to clean all of this up and `CREATE VIEWS` so I wouldn't have to deal with this later on
+    1. ex. varchar to timestamptz
+        1.  `2019-04-08 13:00:00 PDT` --> `2019-04-08 13:00:00-04`
 
 
 ### EDA
@@ -71,6 +74,7 @@ was able to use the following syntax to upload it
 ## :book: Bibliography
 
 - [ascii generator](https://patorjk.com/software/taag/#p=display&f=Doom&t=RAMP)
+- [duckdb data types guide](https://duckdb.org/docs/sql/data_types/overview.html)
 - [duckdb csv INSERT guide](https://duckdb.org/docs/data/csv/overview.html)
 
 ---
