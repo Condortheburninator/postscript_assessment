@@ -54,10 +54,11 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
         1.  `2019-04-08 13:00:00 PDT` --> `2019-04-08 13:00:00-04`
 
 
-### EDA
+### EDA & Hints/Assumptions Review (from pdf)
 1. digits removal - either be 8 digits long or 9 with a leading 1
     1. list a
         1. most of the records are either 8 or 9 digits
+            1. see results below :point_down: a small amount of records need to be removed
 
             | PHONE_NUMBER | PHONE_COUNT |      PER_OF_TOTAL      |
             |-------------:|------------:|-----------------------:|
@@ -69,6 +70,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
             | 15           | 1           | 0.00014739045204651644 |
 
         1. however, let's make sure that all the 9 digit numbers start with 1
+            1. again, a small amount of records need to be removed
 
             | LEADING_DIGIT | PHONE_COUNT |     PER_OF_TOTAL     |
             |---------------|------------:|---------------------:|
@@ -82,7 +84,6 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
             | 8             | 73          | 0.010876496635735698 |
             | 9             | 77          | 0.011472469054132175 |
 
-        1. need to clean up the view to have only 8 digits or 9 leading with 1
     1. list b
 1. remove list import as an opt-in source
     1. list a
