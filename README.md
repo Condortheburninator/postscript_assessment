@@ -19,7 +19,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 - [Approach](#-approach)
 - [Data Quality](#mag_right-data-quality-loading-data--data-cleanup)
 - [EDA](#hiking_boot-eda)
-- [Assumption Review]()
+- [Assumption Review](#jigsaw-hintsassumptions-review-from-pdf)
 - [Answer](#white_check_mark-answer)
 - [Next Steps](#next_track_button-next-steps)
 - [Bibliography](#book-bibliography)
@@ -28,6 +28,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 ## 🎯 Approach
 1. load data into duckdb
+    1. use [medallion architecture](https://www.databricks.com/glossary/medallion-architecture)
 1. data quality checks
 1. EDA
 1. answer questions from assessment
@@ -53,7 +54,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
          | SANTA | Checkout | Collected on SMS Platform B | Unsubscribed | 2023-07-06 11:53 | Subscribed | - |
 
 1. duckdb had issues inferring some of the data types (mostly timestamps & timestamps with timezones)
-    1. wanted to clean all of this up and `CREATE VIEWS` so I wouldn't have to deal with this later on
+    1. wanted to clean all of this up and create views or tables so I wouldn't have to deal with this later on
     1. ex. varchar to timestamptz
         1.  `2019-04-08 13:00:00 PDT` --> `2019-04-08 13:00:00-04`
 
@@ -82,7 +83,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 | Additional Detail       | VARCHAR     | 8310QTM31               | yes                     | 79            |                    |                    |           |           |           | 815540 | 26.89           |
 | SMS Consent Timestamp   | TIMESTAMP   | 2019-04-08 17:00:00     | 2024-04-25 10:37:24     | 639069        |                    |                    |           |           |           | 815540 | 0.00            |
 
-## Hints/Assumptions Review (from pdf)
+## :jigsaw: Hints/Assumptions Review (from pdf)
 1. digits removal - either be 8 digits long or 9 with a leading 1
     1. list a
         1. most of the records are either 8 or 9 digits
@@ -119,6 +120,13 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
             |-------------:|------------:|---------------------:|
             | 8            | 17          | 0.002084508423866395 |
             | 9            | 815523      | 99.99791549157612    |
+
+        1. check to see if the 9 digit numbers start with 1 --> no issues
+
+            | LEADING_DIGIT | PHONE_COUNT | PER_OF_TOTAL |
+            |---------------|------------:|-------------:|
+            | 1             | 815523      | 100.0        |
+
 1. remove list import as an opt-in source
     1. list a
         1. list import accounts for >10% of the records
@@ -137,6 +145,17 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
         | Social opt-in               | 3668        | 0.5406281781066222   |
         | Subscription form           | 6111        | 0.9007030524562618   |
 
+    1. list b
+        1. list import accounts for >21% of the records in list b
+
+        | OPT_IN_SOURCE  | PHONE_COUNT |     PER_OF_TOTAL     |
+        |----------------|------------:|---------------------:|
+        | Mobile Pop-up  | 22197       | 2.7217549108566104   |
+        | Checkout       | 25120       | 3.08016774161905     |
+        | TEXT           | 93          | 0.011403487259974986 |
+        | QR Code        | 173         | 0.02121293866640508  |
+        | List Import    | 171826      | 21.06898496701572    |
+        | Desktop Pop-up | 596131      | 73.09647595458225    |
 
 1. filter to `STATUS = 'Subscribed'`
     1. list a
@@ -145,6 +164,13 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
         |--------------|-------------:|
         | Unsubscribed | 13485        |
         | Subscribed   | 664985       |
+
+    1. list b
+
+        | SMS_SUBSCRIPTION_STATUS | STATUS_COUNT |
+        |-------------------------|-------------:|
+        | SUBSCRIBED              | 815540       |
+
 
 ## to do
 list a
@@ -164,10 +190,6 @@ list a
 
 ## :next_track_button: Next Steps
 - [ ] build out transformation pipeline and lineage in dbt
-- [ ] create bronze, silver and gold (medallion architecture) for schemas
-    - bronze = raw data
-    - silver = standardized data
-    - gold   = business logic & curation
 
 ---
 
@@ -176,5 +198,6 @@ list a
 - [ascii generator](https://patorjk.com/software/taag/#p=display&f=Doom&t=RAMP)
 - [duckdb data types guide](https://duckdb.org/docs/sql/data_types/overview.html)
 - [duckdb csv INSERT guide](https://duckdb.org/docs/data/csv/overview.html)
+- [medallion architecture](https://www.databricks.com/glossary/medallion-architecture)
 
 ---
