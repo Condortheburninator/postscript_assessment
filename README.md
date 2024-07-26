@@ -20,7 +20,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 - [Data Quality](#mag_right-data-quality-loading-data--data-cleanup)
 - [EDA](#hiking_boot-eda)
 - [Assumption Review](#jigsaw-hintsassumptions-review-from-pdf)
-- [Answer](#white_check_mark-answer)
+- [Answers](#white_check_mark-answers)
 - [Next Steps](#next_track_button-next-steps)
 - [Bibliography](#book-bibliography)
 
@@ -32,6 +32,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 1. EDA
 1. answer questions from assessment
 1. profit :dollar: :dollar: :dollar: !!!
+
 
 
 ## :mag_right: Data Quality (Loading Data) & Data Cleanup
@@ -54,6 +55,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
     1. wanted to clean all of this up and create views or tables so I wouldn't have to deal with this later on
     1. ex. varchar to timestamptz
         1.  `2019-04-08 13:00:00 PDT` --> `2019-04-08 13:00:00-04`
+
 
 
 ## :hiking_boot: EDA
@@ -83,7 +85,8 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 1. digits removal - either be 8 digits long or 9 with a leading 1
     1. list a
         1. most of the records are either 8 or 9 digits
-            1. see results below :point_down: a small amount of records need to be removed
+            1. see results below :point_down:
+            1. a small amount of records need to be removed
 
             | PHONE_NUMBER | PHONE_COUNT |      PER_OF_TOTAL      |
             |-------------:|------------:|-----------------------:|
@@ -168,23 +171,62 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
         | SUBSCRIBED              | 815540       |
 
 
-## to do
-list a
-- [ ] has 8 digits or 9 starting with 1
-- [ ] remove list import as an opt-in source
- - [ ]
-- [ ] filter to subscribed status
-
-
 ---
 
-## :white_check_mark: Answer
+## :white_check_mark: Answers
+
+### Task 1-1
+
+How many subscribers from SMS Platform A can be uploaded to Postscript? Break down the subscriber counts by original opt-in sources. Use the following table template:
+
+- need to complete the following:
+    - only include phone numbers with 8 or 9 digits (leading 1)
+    - convert all 8 digit numbers to have a leading one for consistency
+    - remove dupes
+    - remove list import from consideration
+    - identify the original `OPT_IN_SOURCE` if "Collected on SMS Platform B" shows up on list a
+    - only include statuses of "Subscribed"
+
+:information_source: refer to query in analysis/5.answers_task1.sql for the detailed query
+
+|       OPT_IN_SOURCE       | SUBSCRIBER_COUNT |
+|---------------------------|------------------|
+| Checkout                  | 58695            |
+| Desktop Pop-up            | 402851           |
+| Join keywords             | 7                |
+| Mobile Pop-up             | 4411             |
+| QR Code                   | 18               |
+| QR code                   | 251              |
+| Social opt-in             | 3263             |
+| Subscribe keyword         | 7467             |
+| Subscription form         | 5788             |
+| Summertime Website Pop-up | 1146             |
+| TEXT                      | 6                |
+| Tools keywords            | 47               |
+
+### Task 1-2
+How many subscribers from the SMS Platform A export cannot be uploaded to Postscript? Create a table similar to the above and explain why these subscribers cannot be maintained.
+
+:information_source: refer to query in analysis/5.answers_task1.sql for the detailed query
+
+|        OPT_IN_SOURCE        | SUBSCRIBER_COUNT |
+|-----------------------------|------------------|
+| Collected on SMS Platform B | 29807            |
+| List Import                 | 70080            |
+
+1. 'Collected on SMS Platform B' - these records were supposed to be found in list b but returned nothing, therefore we can't determine their opt-in source and they need to be removed (29,807)
+1. when joining to list b, a number of phone numbers returned 'list import' as the opt in source. given the assumptions in the document, list import is not a valid enough reason to port these subscribers over  (70,080)
+
+### Task 2
+
+After you’ve completed the analysis and uploaded the list based on the criteria above, the customer is concerned that they’re missing a bunch of subscribers. We learn that SMS Provider A failed to override the “unsubscribed” status on the list export if subscribers re-opted in (after opting out/unsubscribing) at a later date. How many subscribers have an opt-in date/timestamp that is AFTER the opt-out timestamp?
 
 
 
 ---
 
 ## :next_track_button: Next Steps
+- [ ] implement business logic in gold layer (medallion set-up)
 - [ ] build out transformation pipeline and lineage in dbt
 
 ---
