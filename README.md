@@ -26,7 +26,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 
 ## 🎯 Approach
-1. load data into [duckdb (data warehouse on your local machine)](https://duckdb.org/)
+1. load data into [duckdb](https://duckdb.org/) (data warehouse on your local machine)
     1. use [medallion architecture](https://www.databricks.com/glossary/medallion-architecture)
 1. data quality checks
 1. EDA
