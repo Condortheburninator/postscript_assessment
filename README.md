@@ -26,7 +26,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 
 ## 🎯 Approach
-1. load data into duckdb
+1. load data into [duckdb (data warehouse on your local machine)](https://duckdb.org/)
     1. use [medallion architecture](https://www.databricks.com/glossary/medallion-architecture)
 1. data quality checks
 1. EDA
@@ -341,6 +341,7 @@ results :point_down:
 ## :next_track_button: Next Steps
 - [ ] implement business logic in gold layer (medallion set-up)
 - [ ] build out transformation pipeline and lineage in dbt
+- [ ] continue to standardise nomenclature (`QR Code` vs. `QR code`) from the different tables
 
 ---
 
