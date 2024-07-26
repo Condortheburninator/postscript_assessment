@@ -60,3 +60,34 @@
 
 
 SHOW ALL TABLES ;
+
+
+-- CREATE OR REPLACE TABLE GOLD.SUBSCRIBER_LIST_A
+
+-- AS
+
+-- SELECT
+--          CASE
+--             WHEN LEN ( CAST ( PHONE_NUMBER AS VARCHAR ) = 1
+--             THEN CAST( CONC)
+--         ,SMS_SUBSCRIPTION_STATUS
+--         ,OPT_IN_TIMESTAMP
+--         ,OPT_IN_SOURCE
+--         ,ADDITIONAL_DETAIL
+--         ,SMS_CONSENT_TIMESTAMP
+
+-- FROM
+--         SILVER.SUBSCRIBER_LIST_A
+
+-- WHERE
+--         1 = 1
+--         AND OPT_IN_SOURCE !=  'List import'
+--         AND STATUS        =   'Subscribed'
+--         AND (
+--             LEN( CAST ( PHONE_NUMBER ) AS VARCHAR ) ) = 8
+--             OR (
+--                 LEN( CAST ( PHONE_NUMBER AS VARCHAR ) ) = 9
+--                 AND LEFT( CAST ( PHONE_NUMBER AS VARCHAR ), 1 ) = 1
+--         )
+
+-- ;
