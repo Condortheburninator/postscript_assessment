@@ -69,6 +69,7 @@ TASK_1_B AS (
 
     FROM
             SILVER.SUBSCRIBER_LIST_B
+
 ),
 
 COMBINED AS (
