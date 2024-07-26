@@ -222,12 +222,16 @@ need to complete the following:
 
 :question: After you’ve completed the analysis and uploaded the list based on the criteria above, the customer is concerned that they’re missing a bunch of subscribers. We learn that SMS Provider A failed to override the “unsubscribed” status on the list export if subscribers re-opted in (after opting out/unsubscribing) at a later date. How many subscribers have an opt-in date/timestamp that is AFTER the opt-out timestamp?
 
-there are 97 subscribers that have an opt-in date/timestamp that is AFTER the opt-out timestamp
+
 
 steps:
 1. upcycled the query from task 1-1 and swapped the `STATUS = 'Unsubscribed'`
 1. joined list b to list a since list b is the only table with the opt-in timestamp
-1. filtered the results to
+1. filtered the results to `OPT_IN_TIMESTAMP > DATE_UNSUBSCRIBED`
+
+:information_source: refer to query in analysis/6.answers_task2.sql for the detailed query
+
+there are 97 subscribers that have an opt-in date/timestamp that is AFTER the opt-out timestamp
 
 results :point_down:
 
