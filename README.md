@@ -190,6 +190,8 @@ need to complete the following:
 
 :information_source: refer to query in analysis/5.answers_task1.sql for the detailed query
 
+results below :point_down:
+
 |       OPT_IN_SOURCE       | SUBSCRIBER_COUNT |
 |---------------------------|------------------|
 | Checkout                  | 58695            |
@@ -216,12 +218,11 @@ need to complete the following:
 | List Import                 | 70080            |
 
 1. 'Collected on SMS Platform B' - these records were supposed to be found in list b but returned nothing, therefore we can't determine their opt-in source and they need to be removed (29,807)
-1. when joining to list b, a number of phone numbers returned 'list import' as the opt in source. given the assumptions in the document, list import is not a valid enough reason to port these subscribers over  (70,080)
+1. when joining to list b, a number of phone numbers returned 'list import' as the opt in source. given the assumptions in the document, list import is not a valid reason to port these subscribers over  (70,080)
 
 ### Task 2
 
 :question: After you’ve completed the analysis and uploaded the list based on the criteria above, the customer is concerned that they’re missing a bunch of subscribers. We learn that SMS Provider A failed to override the “unsubscribed” status on the list export if subscribers re-opted in (after opting out/unsubscribing) at a later date. How many subscribers have an opt-in date/timestamp that is AFTER the opt-out timestamp?
-
 
 
 steps:
