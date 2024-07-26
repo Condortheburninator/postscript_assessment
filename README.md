@@ -85,8 +85,7 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 1. digits removal - either be 8 digits long or 9 with a leading 1
     1. list a
         1. most of the records are either 8 or 9 digits
-            1. see results below :point_down:
-            1. a small amount of records need to be removed
+            1. a small amount of records need to be removed - see results below :point_down:
 
             | PHONE_NUMBER | PHONE_COUNT |      PER_OF_TOTAL      |
             |-------------:|------------:|-----------------------:|
@@ -179,13 +178,15 @@ ______ _____ _____ _____ _____ _____ ______ ___________ _____
 
 How many subscribers from SMS Platform A can be uploaded to Postscript? Break down the subscriber counts by original opt-in sources. Use the following table template:
 
-- need to complete the following:
-    - only include phone numbers with 8 or 9 digits (leading 1)
-    - convert all 8 digit numbers to have a leading one for consistency
-    - remove dupes
-    - remove list import from consideration
-    - identify the original `OPT_IN_SOURCE` if "Collected on SMS Platform B" shows up on list a
-    - only include statuses of "Subscribed"
+Before answering the prompt we need to solve for the hints/assumptions listed in the document.
+
+need to complete the following:
+- [x] only include phone numbers with 8 or 9 digits (leading 1)
+- [x] convert all 8 digit numbers to have a leading one for consistency
+- [x] remove dupes
+- [x] remove list import from consideration
+- [x] identify the original `OPT_IN_SOURCE` if "Collected on SMS Platform B" shows up on list a
+- [x] only include statuses of "Subscribed"
 
 :information_source: refer to query in analysis/5.answers_task1.sql for the detailed query
 
